@@ -11,4 +11,6 @@ WORKDIR /PakuchiBot
 COPY --from=builder /PakuchiBot/PakuchiBot .
 COPY --from=builder /PakuchiBot/config.example.yaml /config.example.yaml
 
+RUN apk add --no-cache tzdata
+
 CMD ["./PakuchiBot"]
