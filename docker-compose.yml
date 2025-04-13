@@ -8,6 +8,8 @@ services:
       - ./data:/PakuchiBot/data
       - ./config:/PakuchiBot/config
       - ./assets:/PakuchiBot/assets
+    environment:
+      - TZ=Asia/Shanghai
     networks:
       - pakuchibot-network
     restart: unless-stopped
@@ -18,6 +20,8 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Asia/Shanghai
     command: --interval 30 --stop-timeout 60s
     networks:
       - pakuchibot-network
