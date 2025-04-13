@@ -12,6 +12,16 @@ services:
       - pakuchibot-network
     restart: unless-stopped
 
+  pakuchibot-watchtower:
+    image: containrrr/watchtower
+    container_name: pakuchibot-watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 --stop-timeout 60s
+    networks:
+      - pakuchibot-network
+
 networks:
   pakuchibot-network:
     driver: bridge
