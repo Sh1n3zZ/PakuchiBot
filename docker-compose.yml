@@ -5,9 +5,9 @@ services:
       dockerfile: Dockerfile
     container_name: pakuchibot
     volumes:
-      - /data:/PakuchiBot/data
-      - /config:/PakuchiBot/config
-      - /assets:/PakuchiBot/assets
+      - ./data:/PakuchiBot/data
+      - ./config:/PakuchiBot/config
+      - ./assets:/PakuchiBot/assets
     networks:
       - pakuchibot-network
     restart: unless-stopped
