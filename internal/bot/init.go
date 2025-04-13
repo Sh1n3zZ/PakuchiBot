@@ -97,7 +97,7 @@ func initializeConfig() error {
 
 		viper.Set("storage.encryption_key", Config.Storage.EncryptionKey)
 		if err := viper.WriteConfig(); err != nil {
-			logrus.Warnf("warning: failed to write new key to config file: %v", err)
+			logrus.Warnf("failed to write new key to config file: %v", err)
 		}
 	}
 

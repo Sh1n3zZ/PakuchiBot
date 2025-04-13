@@ -9,5 +9,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o PakuchiBot .
 FROM alpine:latest
 WORKDIR /PakuchiBot
 COPY --from=builder /PakuchiBot/PakuchiBot .
+COPY --from=builder /PakuchiBot/config.example.yaml /config.example.yaml
+COPY --from=builder /PakuchiBot/data /data
+COPY --from=builder /PakuchiBot/assets /assets
 
 CMD ["./PakuchiBot"]
