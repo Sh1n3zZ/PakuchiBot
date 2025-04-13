@@ -1,8 +1,6 @@
 services:
   pakuchibot:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: weatheringocean/pakuchibot:latest
     container_name: pakuchibot
     volumes:
       - ./data:/PakuchiBot/data
