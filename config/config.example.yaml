@@ -1,0 +1,31 @@
+# OneBot连接配置
+connection:
+  # WebSocket服务器地址
+  ws_address: "ws://127.0.0.1:6700"
+  # 访问令牌（可选）
+  access_token: ""
+
+# 机器人设置
+bot:
+  # 机器人QQ号
+  self_id: 123456789
+  # 命令前缀
+  command_prefix: "/"
+  # 调试模式
+  debug: false
+  # 机器人昵称
+  nicknames: ["bot", "机器人"]
+  # 超级用户列表
+  super_users: [123456789]
+
+# 存储设置
+storage:
+  # 数据库文件路径
+  db_path: "~/.zerobot/data.db"
+  encryption_key: "your-32-byte-encryption-key-here!!" # 32字节的加密密钥
+
+scheduler:
+    # 签到检查间隔（秒）
+    check_interval: 300
+    # 最大重试次数
+    max_retries: 3
