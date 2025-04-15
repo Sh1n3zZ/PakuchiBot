@@ -29,3 +29,24 @@ scheduler:
     check_interval: 300
     # 最大重试次数
     max_retries: 3
+
+# 人类模拟设置
+humanlike:
+  # 是否启用人类模拟功能
+  enabled: true
+  # LLM API配置
+  llm:
+    api_key: "your-api-key-here"
+    base_url: "https://api.openai.com/v1"
+    model: "gpt-3.5-turbo"
+    temperature: 0.7
+    max_tokens: 800
+  behavior:
+    # 最小打字速度（字符/秒）
+    min_typing_speed: 3
+    # 最大打字速度（字符/秒）
+    max_typing_speed: 8
+    # 是否启用群组白名单
+    enable_group_whitelist: false
+    # 群组ID白名单，仅在启用白名单且在这些群组中时才启用人类模拟功能
+    group_whitelist: []

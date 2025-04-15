@@ -40,6 +40,22 @@ type BotConfig struct {
 		CheckInterval int `mapstructure:"check_interval"`
 		MaxRetries    int `mapstructure:"max_retries"`
 	} `mapstructure:"scheduler"`
+	HumanLike struct {
+		Enabled bool `mapstructure:"enabled"`
+		LLM     struct {
+			APIKey      string  `mapstructure:"api_key"`
+			BaseURL     string  `mapstructure:"base_url"`
+			Model       string  `mapstructure:"model"`
+			Temperature float64 `mapstructure:"temperature"`
+			MaxTokens   int     `mapstructure:"max_tokens"`
+		} `mapstructure:"llm"`
+		Behavior struct {
+			MinTypingSpeed       int     `mapstructure:"min_typing_speed"`
+			MaxTypingSpeed       int     `mapstructure:"max_typing_speed"`
+			EnableGroupWhitelist bool    `mapstructure:"enable_group_whitelist"`
+			GroupWhitelist       []int64 `mapstructure:"group_whitelist"`
+		} `mapstructure:"behavior"`
+	} `mapstructure:"humanlike"`
 }
 
 var (

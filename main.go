@@ -63,6 +63,8 @@ func main() {
 	mgHandler := handler.NewMGClubHandler(bot.UserRepo, bot.NotifyRepo, bot.TokenCrypto)
 	mgHandler.Register()
 
+	handler.RegisterHumanLikeHandler()
+
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	<-sig
