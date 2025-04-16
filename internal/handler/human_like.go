@@ -629,6 +629,7 @@ func (h *HumanLikeHandler) checkShouldProactivelySpeakByLLM(groupID int64) {
 		"2. 是否有人在寻求回应\n" +
 		"3. 对话是否陷入沉默需要推动\n" +
 		"4. 有没有有价值的内容可以分享\n" +
+		"5. 不要过多发言，不要总是参与话题，不要总是发言，太吵了\n" +
 		"请只回答'yes'或'no'，不要解释原因。"
 
 	apiMessages = append(apiMessages, APIMessage{
