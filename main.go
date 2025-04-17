@@ -63,7 +63,7 @@ func main() {
 	mgHandler := handler.NewMGClubHandler(bot.UserRepo, bot.NotifyRepo, bot.TokenCrypto)
 	mgHandler.Register()
 
-	// GitHub通知
+	// Github Notifier
 	handler.RegisterGitHubHandler()
 
 	handler.RegisterHumanLikeHandler()
