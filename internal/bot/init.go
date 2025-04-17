@@ -29,6 +29,7 @@ type BotConfig struct {
 		SelfID        int64    `mapstructure:"self_id"`
 		CommandPrefix string   `mapstructure:"command_prefix"`
 		Debug         bool     `mapstructure:"debug"`
+		LogLevel      string   `mapstructure:"log_level"`
 		NickNames     []string `mapstructure:"nicknames"`
 		SuperUsers    []int64  `mapstructure:"super_users"`
 	} `mapstructure:"bot"`
@@ -49,6 +50,14 @@ type BotConfig struct {
 			Temperature float64 `mapstructure:"temperature"`
 			MaxTokens   int     `mapstructure:"max_tokens"`
 		} `mapstructure:"llm"`
+		Vision struct {
+			Enabled     bool    `mapstructure:"enabled"`
+			Model       string  `mapstructure:"model"`
+			Temperature float64 `mapstructure:"temperature"`
+			MaxTokens   int     `mapstructure:"max_tokens"`
+			BaseURL     string  `mapstructure:"base_url"`
+			APIKey      string  `mapstructure:"api_key"`
+		} `mapstructure:"vision"`
 		Behavior struct {
 			MinTypingSpeed       int     `mapstructure:"min_typing_speed"`
 			MaxTypingSpeed       int     `mapstructure:"max_typing_speed"`
@@ -131,10 +140,24 @@ func InitConfig() error {
 		return err
 	}
 
-	var err error
-	DB, err = sqlx.Open("sqlite", Config.Storage.DBPath)
+	logLevel := Config.Bot.LogLevel
+	if logLevel == "" {
+		logLevel = "info"
+	}
+
+	level, err := logrus.ParseLevel(logLevel)
 	if err != nil {
-		return fmt.Errorf("failed to connect to database: %w", err)
+		logrus.Warnf("invalid log level: %s, using default 'info'", logLevel)
+		logrus.SetLevel(logrus.InfoLevel)
+	} else {
+		logrus.SetLevel(level)
+		logrus.Debugf("log level set to: %s", logLevel)
+	}
+
+	var dbErr error
+	DB, dbErr = sqlx.Open("sqlite", Config.Storage.DBPath)
+	if dbErr != nil {
+		return fmt.Errorf("failed to connect to database: %w", dbErr)
 	}
 
 	DB.SetMaxOpenConns(1)

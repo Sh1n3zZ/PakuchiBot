@@ -13,6 +13,8 @@ bot:
   command_prefix: "/"
   # 调试模式
   debug: false
+  # 日志级别 (trace, debug, info, warn, error, fatal, panic)
+  log_level: "info"
   # 机器人昵称
   nicknames: ["bot", "机器人"]
   # 超级用户列表
@@ -41,6 +43,15 @@ humanlike:
     model: "gpt-3.5-turbo"
     temperature: 0.7
     max_tokens: 800
+  # Vision模型配置
+  vision:
+    enabled: true
+    model: "gpt-4-vision-preview"
+    temperature: 0.7
+    max_tokens: 300
+    # 以下配置如与llm的配置相同可留空
+    base_url: "https://api.openai.com/v1"
+    api_key: "your-vision-api-key-here"
   behavior:
     # 最小打字速度（字符/秒）
     min_typing_speed: 3
