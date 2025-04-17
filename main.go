@@ -63,6 +63,9 @@ func main() {
 	mgHandler := handler.NewMGClubHandler(bot.UserRepo, bot.NotifyRepo, bot.TokenCrypto)
 	mgHandler.Register()
 
+	// GitHub通知
+	handler.RegisterGitHubHandler()
+
 	handler.RegisterHumanLikeHandler()
 
 	sig := make(chan os.Signal, 1)

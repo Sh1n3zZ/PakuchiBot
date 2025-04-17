@@ -32,6 +32,39 @@ scheduler:
     # 最大重试次数
     max_retries: 3
 
+# GitHub通知设置
+github:
+  # 是否启用GitHub通知功能
+  enabled: false
+  # 检查间隔（分钟）
+  interval: 15
+  # GitHub API令牌（可选，使用令牌可以增加API速率限制）
+  token: ""
+  # 监控的仓库列表
+  repositories:
+    # 仓库示例1
+    - owner: "wdvxdr1123"
+      name: "ZeroBot"
+      monitor_type: ["commit", "release"]
+    # 仓库示例2
+    - owner: "FloatTech"
+      name: "zbputils"
+      monitor_type: ["release", "issue"]
+  # 通知目标列表
+  notify_targets:
+    # 群组通知示例 - 订阅所有仓库
+    - type: "group"
+      id: 123456789
+      # repos字段为空表示接收所有仓库的通知
+    # 群组通知示例 - 只订阅特定仓库
+    - type: "group"
+      id: 987654321
+      repos: ["wdvxdr1123/ZeroBot", "FloatTech/zbputils"]
+    # 私聊通知示例 - 只订阅特定仓库
+    - type: "private"
+      id: 987654321
+      repos: ["wdvxdr1123/ZeroBot"]
+
 # 人类模拟设置
 humanlike:
   # 是否启用人类模拟功能

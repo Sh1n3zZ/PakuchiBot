@@ -41,6 +41,21 @@ type BotConfig struct {
 		CheckInterval int `mapstructure:"check_interval"`
 		MaxRetries    int `mapstructure:"max_retries"`
 	} `mapstructure:"scheduler"`
+	GitHub struct {
+		Enabled      bool   `mapstructure:"enabled"`
+		Interval     int    `mapstructure:"interval"`
+		Token        string `mapstructure:"token"`
+		Repositories []struct {
+			Owner       string   `mapstructure:"owner"`
+			Name        string   `mapstructure:"name"`
+			MonitorType []string `mapstructure:"monitor_type"`
+		} `mapstructure:"repositories"`
+		NotifyTargets []struct {
+			Type  string   `mapstructure:"type"`
+			ID    int64    `mapstructure:"id"`
+			Repos []string `mapstructure:"repos"`
+		} `mapstructure:"notify_targets"`
+	} `mapstructure:"github"`
 	HumanLike struct {
 		Enabled bool `mapstructure:"enabled"`
 		LLM     struct {
